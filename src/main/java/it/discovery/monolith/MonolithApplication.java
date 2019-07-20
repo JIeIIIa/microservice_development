@@ -1,20 +1,21 @@
 package it.discovery.monolith;
 
+import it.discovery.library.domain.Book;
+import it.discovery.library.repository.BookRepository;
+import it.discovery.order.domain.Customer;
+import it.discovery.order.repository.CustomerRepository;
 import javax.annotation.PostConstruct;
-
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import it.discovery.monolith.domain.Book;
-import it.discovery.monolith.domain.Customer;
-import it.discovery.monolith.repository.BookRepository;
-import it.discovery.monolith.repository.CustomerRepository;
-
 @SpringBootApplication
-@EnableJpaRepositories("it.discovery.monolith.repository")
+@EnableJpaRepositories(value = {"it.discovery"})
+@EntityScan(value = {"it.discovery"})
+@ComponentScan(value = {"it.discovery"})
 @AllArgsConstructor
 public class MonolithApplication {
 	public static void main(String[] args) {
@@ -22,7 +23,7 @@ public class MonolithApplication {
 	}
 
 	private final BookRepository bookRepository;
-	
+
 	private final CustomerRepository customerRepository;
 	
 	@PostConstruct

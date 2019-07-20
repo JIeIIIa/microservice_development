@@ -1,5 +1,7 @@
-package it.discovery.monolith.domain;
+package it.discovery.order.domain;
 
+import it.discovery.monolith.domain.BaseEntity;
+import it.discovery.order.domain.Order;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,7 +15,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table
-public class Customer extends BaseEntity{
+public class Customer extends BaseEntity {
 	private String name;
 	
 	private String address;

@@ -1,7 +1,7 @@
 package it.discovery.monolith.service;
 
 import it.discovery.monolith.domain.Notification;
-import it.discovery.monolith.repository.OrderRepository;
+import it.discovery.order.repository.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

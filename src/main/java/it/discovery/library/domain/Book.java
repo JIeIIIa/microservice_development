@@ -1,6 +1,5 @@
 package it.discovery.library.domain;
 
-import it.discovery.monolith.domain.BaseEntity;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

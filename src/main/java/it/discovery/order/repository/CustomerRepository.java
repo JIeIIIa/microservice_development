@@ -1,8 +1,8 @@
-package it.discovery.monolith.repository;
+package it.discovery.order.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import it.discovery.monolith.domain.Customer;
+import it.discovery.order.domain.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 }

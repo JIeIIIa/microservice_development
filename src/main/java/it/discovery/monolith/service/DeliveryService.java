@@ -3,8 +3,8 @@ package it.discovery.monolith.service;
 import java.time.LocalDateTime;
 
 import it.discovery.monolith.domain.Notification;
-import it.discovery.monolith.domain.Order;
-import it.discovery.monolith.repository.OrderRepository;
+import it.discovery.order.domain.Order;
+import it.discovery.order.repository.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

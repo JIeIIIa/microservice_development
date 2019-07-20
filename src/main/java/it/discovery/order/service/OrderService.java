@@ -1,16 +1,15 @@
-package it.discovery.monolith.service;
-
-import java.time.LocalDateTime;
-import java.util.List;
+package it.discovery.order.service;
 
 import it.discovery.monolith.domain.Notification;
-import it.discovery.monolith.domain.Order;
-import it.discovery.monolith.domain.OrderItem;
-import it.discovery.monolith.repository.BookRepository;
-import it.discovery.monolith.repository.CustomerRepository;
-import it.discovery.monolith.repository.OrderRepository;
+import it.discovery.monolith.service.NotificationService;
+import it.discovery.monolith.service.PaymentService;
+import it.discovery.order.domain.Order;
+import it.discovery.order.domain.OrderItem;
+import it.discovery.order.repository.CustomerRepository;
+import it.discovery.order.repository.OrderRepository;
+import java.time.LocalDateTime;
+import java.util.List;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,8 +17,6 @@ import org.springframework.stereotype.Service;
 public class OrderService {
 
 	private final OrderRepository orderRepository;
-
-	private final BookRepository bookRepository;
 
 	private final CustomerRepository customerRepository;
 
@@ -61,18 +58,18 @@ public class OrderService {
 		});
 	}
 
-	public Order createOrder(int bookId, int number, int customerId) {
+	public Order createOrder(int bookId, int price, int number, int customerId) {
 		Order order = new Order();
-		order.addItem(new OrderItem(bookRepository.getOne(bookId), number));
+		order.addItem(new OrderItem(bookId, price, number));
 		order.setOrderDate(LocalDateTime.now());
 		order.setCustomer(customerRepository.getOne(customerId));
 
 		return order;
 	}
 
-	public void addBook(int orderId, int bookId, int number) {
+	public void addBook(int orderId, int bookId, int price, int number) {
 		orderRepository.findById(orderId).ifPresent(order -> {
-			order.addItem(new OrderItem(bookRepository.getOne(bookId), number));
+			order.addItem(new OrderItem(bookId, price, number));
 			orderRepository.save(order);
 		});
 	}
