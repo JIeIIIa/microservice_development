@@ -14,9 +14,12 @@ import it.discovery.monolith.domain.Order;
 import it.discovery.monolith.repository.BookRepository;
 import it.discovery.monolith.repository.CustomerRepository;
 import it.discovery.monolith.service.OrderService;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("shop")
 @RequiredArgsConstructor
 public class ShopController {
 	
@@ -33,11 +36,13 @@ public class ShopController {
 		return libraryName;
 	}
 
+	@GetMapping("book")
 	public List<Book> getBooks() {
 		return bookRepository.findAll();				
 	}
 
-	public Book getBook(int id) {
+	@GetMapping("book/{id}")
+	public Book getBook(@PathVariable("id") Integer id) {
 		return bookRepository.getOne(id);				
 	}
 
