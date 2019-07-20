@@ -2,6 +2,7 @@ package it.discovery.monolith;
 
 import javax.annotation.PostConstruct;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,16 +15,15 @@ import it.discovery.monolith.repository.CustomerRepository;
 
 @SpringBootApplication
 @EnableJpaRepositories("it.discovery.monolith.repository")
+@AllArgsConstructor
 public class MonolithApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MonolithApplication.class, args);
 	}
+
+	private final BookRepository bookRepository;
 	
-	@Autowired
-	private BookRepository bookRepository;
-	
-	@Autowired
-	private CustomerRepository customerRepository;
+	private final CustomerRepository customerRepository;
 	
 	@PostConstruct
 	public void setup() {

@@ -9,18 +9,23 @@ import it.discovery.monolith.domain.OrderItem;
 import it.discovery.monolith.repository.BookRepository;
 import it.discovery.monolith.repository.CustomerRepository;
 import it.discovery.monolith.repository.OrderRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
+@AllArgsConstructor
 public class OrderService {
 
-	private OrderRepository orderRepository;
+	private final OrderRepository orderRepository;
 
-	private BookRepository bookRepository;
+	private final BookRepository bookRepository;
 
-	private CustomerRepository customerRepository;
+	private final CustomerRepository customerRepository;
 
-	private NotificationService notificationService;
+	private final NotificationService notificationService;
 
-	private PaymentService paymentService;
+	private final PaymentService paymentService;
 
 	public void complete(int orderId) {
 		orderRepository.findById(orderId).ifPresent(order -> {

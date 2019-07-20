@@ -2,13 +2,17 @@ package it.discovery.monolith.service;
 
 import it.discovery.monolith.domain.Notification;
 import it.discovery.monolith.repository.OrderRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
+@AllArgsConstructor
 public class SchedulerService {
-	private OrderRepository orderRepository;
+	private final OrderRepository orderRepository;
 
-	private NotificationService notificationService;
+	private final NotificationService notificationService;
 
-	private DeliveryService deliveryService;
+	private final DeliveryService deliveryService;
 
 	public void run() {
 		notifyPendingOrders();

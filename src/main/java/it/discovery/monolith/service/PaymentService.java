@@ -3,13 +3,17 @@ package it.discovery.monolith.service;
 import it.discovery.monolith.domain.Notification;
 import it.discovery.monolith.domain.Order;
 import it.discovery.monolith.repository.OrderRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
+@AllArgsConstructor
 public class PaymentService {
-	private OrderRepository orderRepository;
+	private final OrderRepository orderRepository;
 	
-	private PaymentProvider paymentProvider;
+	private final PaymentProvider paymentProvider;
 	
-	private NotificationService notificationService;
+	private final NotificationService notificationService;
 	
 	public void pay(Order order) {
 		System.out.println("Charging " + order.getAmount() + " from credit card " + order.getCustomer().getCardNumber());

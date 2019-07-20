@@ -2,6 +2,10 @@ package it.discovery.monolith.controller;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import it.discovery.monolith.domain.Book;
@@ -10,18 +14,21 @@ import it.discovery.monolith.domain.Order;
 import it.discovery.monolith.repository.BookRepository;
 import it.discovery.monolith.repository.CustomerRepository;
 import it.discovery.monolith.service.OrderService;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequiredArgsConstructor
 public class ShopController {
 	
 	private String libraryName = "IT-Discovery library";
-	
-	private BookRepository bookRepository;
-	
-	private CustomerRepository customerRepository;
-	
-	private OrderService orderService;
 
-	@GetMapping("/library")
+	private final BookRepository bookRepository;
+
+	private final CustomerRepository customerRepository;
+
+	private final OrderService orderService;
+
+	@GetMapping("library")
 	public String getLibraryName() {
 		return libraryName;
 	}

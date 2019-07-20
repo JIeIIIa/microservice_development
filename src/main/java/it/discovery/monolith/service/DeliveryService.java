@@ -5,11 +5,15 @@ import java.time.LocalDateTime;
 import it.discovery.monolith.domain.Notification;
 import it.discovery.monolith.domain.Order;
 import it.discovery.monolith.repository.OrderRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
+@AllArgsConstructor
 public class DeliveryService {
-	private OrderRepository orderRepository;
+	private final OrderRepository orderRepository;
 	
-	private NotificationService notificationService;
+	private final NotificationService notificationService;
 	
 	public void deliver(Order order) {
 		order.setDelivered(true);
