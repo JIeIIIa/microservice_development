@@ -1,8 +1,8 @@
 package it.discovery.order.service;
 
-import it.discovery.monolith.domain.Notification;
-import it.discovery.monolith.service.NotificationService;
 import it.discovery.monolith.service.PaymentService;
+import it.discovery.notification.domain.Notification;
+import it.discovery.notification.service.NotificationService;
 import it.discovery.order.domain.Order;
 import it.discovery.order.domain.OrderItem;
 import it.discovery.order.repository.CustomerRepository;

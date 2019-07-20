@@ -1,8 +1,7 @@
-package it.discovery.monolith.repository;
+package it.discovery.notification.repository;
 
+import it.discovery.notification.domain.Notification;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import it.discovery.monolith.domain.Notification;
 
 public interface NotificationRepository extends JpaRepository<Notification, Integer> {
 	

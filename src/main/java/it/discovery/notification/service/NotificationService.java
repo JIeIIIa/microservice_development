@@ -1,11 +1,9 @@
-package it.discovery.monolith.service;
+package it.discovery.notification.service;
 
 import it.discovery.event.NotificationEvent;
-import it.discovery.monolith.domain.Notification;
-import it.discovery.monolith.repository.NotificationRepository;
-import java.time.LocalDateTime;
+import it.discovery.notification.domain.Notification;
+import it.discovery.notification.repository.NotificationRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 

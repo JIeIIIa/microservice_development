@@ -1,10 +1,10 @@
 package it.discovery.monolith.service;
 
-import java.time.LocalDateTime;
-
-import it.discovery.monolith.domain.Notification;
+import it.discovery.notification.domain.Notification;
+import it.discovery.notification.service.NotificationService;
 import it.discovery.order.domain.Order;
 import it.discovery.order.repository.OrderRepository;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
