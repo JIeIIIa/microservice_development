@@ -1,12 +1,12 @@
 package it.discovery.order.service;
 
-import it.discovery.monolith.service.PaymentService;
 import it.discovery.notification.domain.Notification;
 import it.discovery.notification.service.NotificationService;
 import it.discovery.order.domain.Order;
 import it.discovery.order.domain.OrderItem;
 import it.discovery.order.repository.CustomerRepository;
 import it.discovery.order.repository.OrderRepository;
+import it.discovery.payment.service.PaymentService;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;

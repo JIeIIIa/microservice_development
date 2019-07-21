@@ -1,4 +1,4 @@
-package it.discovery.monolith.service;
+package it.discovery.payment.service;
 
 import it.discovery.order.domain.Order;
 import org.springframework.stereotype.Component;
