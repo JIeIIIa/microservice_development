@@ -4,9 +4,19 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.discovery</groupId>
 	<artifactId>monolith</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <modules>
+		<module>event-bus</module>
+		<module>notification</module>
+		<module>delivery</module>
+		<module>library</module>
+		<module>order</module>
+		<module>payment</module>
+		<module>order-client-dto</module>
+	</modules>
 
-	<parent>
+  <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.6.RELEASE</version>

@@ -1,10 +1,5 @@
 package it.discovery.monolith;
 
-import it.discovery.library.domain.Book;
-import it.discovery.library.repository.BookRepository;
-import it.discovery.order.domain.Customer;
-import it.discovery.order.repository.CustomerRepository;
-import javax.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,22 +19,4 @@ public class MonolithApplication {
 		SpringApplication.run(MonolithApplication.class, args);
 	}
 
-	private final BookRepository bookRepository;
-
-	private final CustomerRepository customerRepository;
-	
-	@PostConstruct
-	public void setup() {
-		Book book = new Book();
-		book.setName("Thinking in Java");
-		book.setPages(1150);
-		book.setYear(2006);
-		bookRepository.save(book);
-		
-		Customer customer = new Customer();
-		customer.setId(1);
-		customer.setName("Sam Newman");
-		customer.setEmail("sam.newman@gmail.com");
-		customerRepository.save(customer);
-	}
 }
