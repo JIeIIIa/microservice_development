@@ -8,12 +8,12 @@
   <version>0.0.1-SNAPSHOT</version>
   <modules>
 		<module>event-bus</module>
-		<module>notification</module>
-		<module>delivery</module>
 		<module>library</module>
-		<module>order</module>
-		<module>payment</module>
 		<module>order-client-dto</module>
+		<module>order</module>
+		<module>delivery</module>
+		<module>payment</module>
+		<module>notification</module>
 	</modules>
 
   <parent>
@@ -23,7 +23,7 @@
 	</parent>
 
 	<properties>
-		<java.version>1.11</java.version>
+		<java.version>11</java.version>
 		<spring-cloud-contract.version>2.1.2.RELEASE</spring-cloud-contract.version>
 	</properties>
 
@@ -91,30 +91,32 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<release>11</release>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.10</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+		</plugins>
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.8.1</version>
-					<configuration>
-						<source>${java.version}</source>
-						<target>${java.version}</target>
-						<release>11</release>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-eclipse-plugin</artifactId>
-					<version>2.10</version>
-					<configuration>
-						<downloadSources>true</downloadSources>
-						<downloadJavadocs>true</downloadJavadocs>
-					</configuration>
-				</plugin>
-				<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
-					<version>${spring.boot.version}</version>
+					<version>2.1.6.RELEASE</version>
 					<executions>
 						<execution>
 							<goals>

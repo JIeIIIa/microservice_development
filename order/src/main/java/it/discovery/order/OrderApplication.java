@@ -6,8 +6,12 @@ import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@EnableJpaRepositories("it.discovery.order.repository")
+@ComponentScan("it.discovery")
 @RequiredArgsConstructor
 public class OrderApplication {
 

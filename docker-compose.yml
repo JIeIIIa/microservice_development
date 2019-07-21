@@ -1,9 +1,9 @@
 version: '3.6'
 
 services:
-  client:
+  library:
     build:
-      context: .
+      context: library
       dockerfile: src/main/resources/library.dockerfile
     expose:
       - 8080
@@ -11,6 +11,46 @@ services:
       - "8080:8080"
     networks:
       - network1
+  order:
+    build:
+      context: order
+      dockerfile: src/main/resources/order.dockerfile
+    expose:
+      - 8080
+    ports:
+      - "8090:8080"
+    networks:
+      - network1
+  payment:
+    build:
+      context: payment
+      dockerfile: src/main/resources/payment.dockerfile
+    expose:
+      - 8080
+    ports:
+      - "8070:8080"
+    networks:
+      - network1
+  delivery:
+    build:
+      context: delivery
+      dockerfile: src/main/resources/delivery.dockerfile
+    expose:
+        - 8080
+    ports:
+        - "8060:8080"
+    networks:
+        - network1
+  notification:
+    build:
+      context: notification
+      dockerfile: src/main/resources/notification.dockerfile
+    expose:
+        - 8080
+    ports:
+        - "8050:8080"
+    networks:
+        - network1
 networks:
   network1:
     driver: bridge
