@@ -44,7 +44,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public void updateBook(@PathVariable Integer id, @RequestBody Book book) {
+    public void updateBook(@RequestBody Book book) {
       bookRepository.save(book);
     }
 

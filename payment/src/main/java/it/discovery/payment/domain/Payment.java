@@ -9,11 +9,13 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Builder
 @Entity
 @Table(name = "PAYMENTS")
+@ToString
 public class Payment {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

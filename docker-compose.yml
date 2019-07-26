@@ -51,6 +51,19 @@ services:
         - "8050:8080"
     networks:
         - network1
+  kafka:
+    image: landoop/fast-data-dev
+    ports:
+      - "2181:2181"
+      - "3030:3030"
+      - "8081:8081"
+      - "8082:8082"
+      - "8083:8083"
+      - "9092:9092"
+    environment:
+      - ADV_HOST=kafka
+    networks:
+      - network1
 networks:
   network1:
     driver: bridge

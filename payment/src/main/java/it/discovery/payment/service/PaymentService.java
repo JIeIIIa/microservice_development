@@ -1,18 +1,17 @@
 package it.discovery.payment.service;
 
 import it.discovery.event.NotificationEvent;
-import it.discovery.event.PaymentCompletedEvent;
-import it.discovery.event.PendingOrderEvent;
-import it.discovery.event.bus.EventBus;
 import it.discovery.order.domain.domain.OrderDTO;
 import it.discovery.payment.domain.Payment;
 import it.discovery.payment.repository.PaymentRepository;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class PaymentService {
 
 //  private final OrderRepository orderRepository;
@@ -20,7 +19,7 @@ public class PaymentService {
   private final PaymentRepository paymentRepository;
   private final PaymentProvider paymentProvider;
 
-  private final EventBus eventBus;
+//  private final EventBus eventBus;
 
   public void pay(OrderDTO order, int paidAmount) {
     System.out.println("Charging " + order.getAmount() + " from credit card " + order.getCustomer()
@@ -38,7 +37,7 @@ public class PaymentService {
         .paidAmount(paidAmount)
         .build();
     paymentRepository.save(payment);
-
+    log.debug("Payment was saved: {}", payment);
     NotificationEvent event = NotificationEvent.builder()
         .email(order.getCustomer().getEmail())
         .recipient(order.getCustomer().getName())
@@ -46,9 +45,9 @@ public class PaymentService {
         .text("Hi/n. Your order was payed successfully")
         .build();
 
-    eventBus.send(event);
-    eventBus.send(new PaymentCompletedEvent(order.getId()));
-    System.out.println("Charging completed");
+//    eventBus.send(event);
+//    eventBus.send(new PaymentCompletedEvent(order.getId()));
+    log.info("Charging completed: [orderDTO = {}], [paidAmount = {}]", order, paidAmount );
   }
 
   private void notifyPendingOrders() {
@@ -67,6 +66,6 @@ public class PaymentService {
   }
 
   private void sendPendingOrderNotification(Payment payment) {
-    eventBus.send(new PendingOrderEvent(payment.getOrderId()));
+//    eventBus.send(new PendingOrderEvent(payment.getOrderId()));
   }
 }

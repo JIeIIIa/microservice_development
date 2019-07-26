@@ -11,4 +11,11 @@
 
   <artifactId>event-bus</artifactId>
 
+  <dependencies>
+    <dependency>
+      <groupId>it.discovery</groupId>
+      <artifactId>order-client-dto</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
 </project>
