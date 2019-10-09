@@ -1,19 +1,25 @@
 package it.discovery.notification.domain;
 
-import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table
+@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Notification {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

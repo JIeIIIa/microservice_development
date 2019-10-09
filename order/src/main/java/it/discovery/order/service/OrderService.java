@@ -14,12 +14,14 @@ import it.discovery.order.domain.domain.OrderDTO;
 import it.discovery.order.messaging.MessageProducer;
 import it.discovery.order.repository.CustomerRepository;
 import it.discovery.order.repository.OrderRepository;
-import java.time.LocalDateTime;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
+import org.springframework.util.concurrent.ListenableFuture;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -39,18 +41,18 @@ public class OrderService {
   public void complete(int orderId) {
     log.debug("--> order complete [ orderId = {} ]", orderId);
     orderRepository.findById(orderId).ifPresent(order -> {
-      //TODO: add pay event
-//			paymentService.pay(order);
 
       orderRepository.save(order);
 
-      NotificationEvent event = NotificationEvent.builder()
+      NotificationEvent notificationEvent = NotificationEvent.builder()
           .email(order.getCustomer().getEmail())
           .recipient(order.getCustomer().getName())
           .title("Order " + order.getId() + " is completed")
           .text("Hi/n. Your order has been completed")
           .build();
-//      eventBus.send(event);
+
+      messageProducer.sendNotification(notificationEvent);
+
       log.info(" --> order {} completed", orderId);
       OrderDTO orderDTO = //mapper.map(order, OrderDTO.class);
           OrderDTO.builder()
@@ -66,9 +68,19 @@ public class OrderService {
                   .build())
               .build();
 
-      messageProducer.sendEvent(
-          new OrderCompletedEvent(orderDTO));
+      ListenableFuture<SendResult<String, Object>> future = messageProducer
+          .sendEvent(
+              new OrderCompletedEvent(orderDTO));
+      future.addCallback(
+          success -> onPaySuccess(order),
+          err -> log.error("ERROR: {}", err.getMessage()));
     });
+  }
+
+  private void onPaySuccess(Order order) {
+    order.setPayed(true);
+    orderRepository.save(order);
+    log.debug("SUCCESS");
   }
 
   public void cancel(int orderId) {

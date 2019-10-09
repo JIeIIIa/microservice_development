@@ -4,5 +4,5 @@ public interface TopicNameCollection {
 
   String ORDER = "order";
 
-  String notification = "notification";
+  String NOTIFICATION = "notification";
 }

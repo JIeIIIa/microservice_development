@@ -1,7 +1,6 @@
-package it.discovery.order.messaging;
+package it.discovery.payment.messaging;
 
 import it.discovery.event.NotificationEvent;
-import it.discovery.event.OrderCompletedEvent;
 import it.discovery.event.bus.TopicNameCollection;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,16 +15,6 @@ import org.springframework.util.concurrent.ListenableFuture;
 public class MessageProducer {
 
   private final KafkaTemplate<String, Object> kafkaTemplate;
-
-  public ListenableFuture<SendResult<String, Object>> sendEvent(OrderCompletedEvent orderCompletedEvent) {
-    log.debug(">> send event: {}", orderCompletedEvent);
-    return kafkaTemplate
-        .send(
-            TopicNameCollection.ORDER,
-            "" + orderCompletedEvent.getOrderDTO().getId(),
-            orderCompletedEvent);
-
-  }
 
   public void sendNotification(NotificationEvent notification) {
     log.debug(">> sending notification...");
